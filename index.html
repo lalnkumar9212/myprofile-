@@ -8,11 +8,11 @@
     <style>
         :root {
             --bg-color: #030712;
-            --card-bg: rgba(15, 23, 42, 0.75);
-            --border-color: rgba(59, 130, 246, 0.2);
+            --card-bg: rgba(15, 23, 42, 0.9);
+            --border-color: rgba(59, 130, 246, 0.3);
             --primary-glow: #2563eb;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
             --accent-blue: #38bdf8;
         }
 
@@ -42,7 +42,6 @@
             position: relative;
         }
 
-        /* Top Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -51,7 +50,6 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            backdrop-filter: blur(12px);
             position: relative;
         }
 
@@ -69,28 +67,27 @@
             gap: 20px;
             color: var(--text-muted);
             cursor: pointer;
-            position: relative;
+            font-size: 1.2rem;
         }
 
         .nav-icons i:hover {
             color: var(--accent-blue);
         }
 
-        /* Dropdown Menu (3 Dots) */
+        /* Fixed Dropdown Menu Styles - Solid Dark Background for Clear Visibility */
         .dropdown-menu {
             position: absolute;
-            top: 60px;
+            top: 65px;
             right: 20px;
-            width: 220px;
-            background: rgba(15, 23, 42, 0.95);
-            border: 1px solid var(--border-color);
+            width: 230px;
+            background: #0b0f19 !important;
+            border: 2px solid #3b82f6;
             border-radius: 14px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
             display: none;
             flex-direction: column;
-            padding: 8px 0;
-            z-index: 100;
+            padding: 10px 0;
+            z-index: 999;
         }
 
         .dropdown-menu.active {
@@ -101,84 +98,53 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px 18px;
-            font-size: 0.9rem;
-            color: var(--text-main);
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            color: #ffffff;
             text-decoration: none;
-            transition: background 0.2s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .menu-item i {
+            color: var(--accent-blue);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
         }
 
         .menu-item:hover {
-            background: rgba(37, 99, 235, 0.2);
+            background: rgba(37, 99, 235, 0.3);
             color: var(--accent-blue);
         }
 
-        /* Banner */
         .hero-banner {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.6), rgba(15, 23, 42, 0.8));
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(15, 23, 42, 0.9));
+            border: 1px solid rgba(59, 130, 246, 0.4);
             border-radius: 20px;
             padding: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.3);
         }
 
-        .welcome-text h3 {
-            color: #60a5fa;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
+        .welcome-text h3 { color: #60a5fa; font-size: 0.95rem; margin-bottom: 5px; }
+        .welcome-text h1 { font-size: 2rem; font-weight: 700; margin-bottom: 5px; color: #fff; }
+        .welcome-text p { color: var(--text-muted); font-size: 0.9rem; }
+        .banner-quote { text-align: right; font-style: italic; color: var(--accent-blue); font-size: 1.1rem; }
 
-        .welcome-text h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .welcome-text p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .banner-quote {
-            text-align: right;
-            font-style: italic;
-            color: var(--accent-blue);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        /* Profile & About Section */
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
+        .profile-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 18px;
             padding: 22px;
-            backdrop-filter: blur(10px);
         }
 
-        .profile-card {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
+        .profile-card { display: flex; align-items: center; gap: 25px; }
 
-        .avatar-container {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            flex-shrink: 0;
-        }
+        .avatar-container { position: relative; width: 100px; height: 100px; flex-shrink: 0; }
 
         .avatar {
             width: 100%;
@@ -200,67 +166,31 @@
             border-radius: 50%;
         }
 
-        .profile-info h2 {
-            font-size: 1.4rem;
-            margin-bottom: 4px;
-        }
+        .profile-info h2 { font-size: 1.4rem; margin-bottom: 4px; color: #fff; }
+        .profile-info .role { color: var(--accent-blue); font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; }
+        .tags { display: flex; gap: 15px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+        .details-list { display: flex; gap: 20px; font-size: 0.85rem; color: #ffffff; }
+        .card-title { display: flex; align-items: center; gap: 8px; font-size: 1rem; color: var(--accent-blue); margin-bottom: 12px; font-weight: 600; }
+        .about-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        .profile-info .role {
-            color: var(--accent-blue);
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .tags {
-            display: flex;
-            gap: 15px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .details-list {
-            display: flex;
-            gap: 20px;
-            font-size: 0.85rem;
-            color: #cbd5e1;
-        }
-
-        .card-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-            color: var(--accent-blue);
-            margin-bottom: 12px;
-        }
-
-        .about-text {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* 4 Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
 
         .stat-card {
             display: flex;
             align-items: center;
             gap: 15px;
             padding: 18px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
         }
+
+        .stat-card:hover { transform: translateY(-2px); background: rgba(30, 41, 59, 0.95); }
 
         .stat-icon {
             width: 45px;
             height: 45px;
             border-radius: 12px;
-            background: rgba(37, 99, 235, 0.2);
+            background: rgba(37, 99, 235, 0.25);
             color: var(--accent-blue);
             display: flex;
             align-items: center;
@@ -269,81 +199,27 @@
             flex-shrink: 0;
         }
 
-        .stat-info h4 {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
+        .stat-info h4 { font-size: 0.85rem; color: var(--text-muted); }
+        .stat-info p { font-size: 0.95rem; font-weight: 600; color: #fff; }
 
-        .stat-info p {
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
+        .main-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
 
-        /* Main Content Grid */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
+        .timeline-item { display: flex; gap: 12px; margin-bottom: 15px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-blue); margin-top: 5px; flex-shrink: 0; }
+        .timeline-content h5 { font-size: 0.9rem; color: #fff; }
+        .timeline-content p { font-size: 0.8rem; color: var(--text-muted); }
 
-        .timeline-item {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 15px;
-            position: relative;
-        }
+        .skill-item { margin-bottom: 15px; }
+        .skill-header { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; color: #fff; }
+        .progress-bar { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; }
+        .fill { height: 100%; background: linear-gradient(90deg, #2563eb, #38bdf8); border-radius: 10px; }
 
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent-blue);
-            margin-top: 5px;
-            flex-shrink: 0;
-        }
-
-        .timeline-content h5 {
-            font-size: 0.9rem;
-        }
-
-        .timeline-content p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Skills Bars */
-        .skill-item {
-            margin-bottom: 15px;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            margin-bottom: 6px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .fill {
-            height: 100%;
-            background: linear-gradient(90deg, #2563eb, #38bdf8);
-            border-radius: 10px;
-        }
-
-        /* Quick Action Buttons */
         .action-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             margin-bottom: 10px;
@@ -353,11 +229,8 @@
             transition: background 0.2s;
         }
 
-        .action-btn:hover {
-            background: rgba(37, 99, 235, 0.1);
-        }
+        .action-btn:hover { background: rgba(37, 99, 235, 0.25); }
 
-        /* Footer */
         .footer-quote {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -377,48 +250,35 @@
             padding: 10px 5px;
         }
 
-        /* Responsive Layout */
         @media (max-width: 900px) {
-            .profile-grid, .main-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hero-banner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .banner-quote {
-                text-align: left;
-            }
+            .profile-grid, .main-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-banner { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .banner-quote { text-align: left; }
         }
     </style>
 </head>
 <body>
 
     <div class="dashboard-container">
-        <!-- Header -->
+        <!-- Navbar -->
         <div class="navbar">
             <div class="brand">
                 <i class="fa-solid fa-code"></i> My Dashboard
             </div>
             <div class="nav-icons">
-                <i class="fa-regular fa-bell" id="bellIcon" title="Notifications"></i>
+                <i class="fa-regular fa-bell" id="bellBtn" title="Notifications"></i>
                 <i class="fa-solid fa-ellipsis-vertical" id="menuToggle" title="Menu"></i>
             </div>
 
-            <!-- Dropdown Menu matching reference layout -->
+            <!-- Interactive 3-Dots Dropdown (Solid High-Contrast Menu) -->
             <div class="dropdown-menu" id="dropdownMenu">
-                <a href="#" class="menu-item"><i class="fa-regular fa-user"></i> Profile</a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-graduation-cap"></i> Qualifications</a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-laptop-code"></i> Skills & Projects</a>
-                <a href="#" class="menu-item"><i class="fa-regular fa-file-lines"></i> Documents</a>
-                <a href="#" class="menu-item"><i class="fa-regular fa-folder"></i> Notes & Folders</a>
-                <a href="#" class="menu-item"><i class="fa-regular fa-bell"></i> Notifications</a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-circle-info"></i> About</a>
+                <div class="menu-item" onclick="showMsg('Profile Overview Locked (View Mode)')"><i class="fa-regular fa-user"></i> Profile</div>
+                <div class="menu-item" onclick="showMsg('Qualifications: 12th Arts, BCA Continuing')"><i class="fa-solid fa-graduation-cap"></i> Qualifications</div>
+                <div class="menu-item" onclick="showMsg('Skills: HTML, CSS, Python, AI/ML')"><i class="fa-solid fa-laptop-code"></i> Skills</div>
+                <div class="menu-item" onclick="showMsg('Documents: 0 Files Uploaded')"><i class="fa-regular fa-file-lines"></i> Documents</div>
+                <div class="menu-item" onclick="showMsg('No Active Notifications')"><i class="fa-regular fa-bell"></i> Notifications</div>
+                <div class="menu-item" onclick="showMsg('Settings are locked in View Mode')"><i class="fa-solid fa-gear"></i> Settings</div>
             </div>
         </div>
 
@@ -434,11 +294,10 @@
             </div>
         </div>
 
-        <!-- Profile & About -->
+        <!-- Profile Section -->
         <div class="profile-grid">
             <div class="card profile-card">
                 <div class="avatar-container">
-                    <!-- Your uploaded photo reference -->
                     <img src="306.jpg" alt="Laln Kumar" class="avatar" onerror="this.src='https://via.placeholder.com/100/1e3a8a/ffffff?text=LK'">
                     <div class="online-status"></div>
                 </div>
@@ -447,7 +306,7 @@
                     <div class="role">Web Developer & AI Learner</div>
                     <div class="tags">
                         <span><i class="fa-solid fa-user-graduate"></i> Student</span>
-                        <span><i class="fa-solid fa-laptop-code"></i> Technology Learner</span>
+                        <span><i class="fa-solid fa-laptop-code"></i> Tech Learner</span>
                     </div>
                     <div class="details-list">
                         <span><i class="fa-regular fa-envelope"></i> lalnkumar9212@gmail.com</span>
@@ -465,30 +324,30 @@
             </div>
         </div>
 
-        <!-- 4 Stats Cards -->
+        <!-- Stats -->
         <div class="stats-grid">
-            <div class="card stat-card">
+            <div class="card stat-card" onclick="showMsg('Education: 12th Arts | BCA Continuing')">
                 <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
                 <div class="stat-info">
                     <h4>Education</h4>
                     <p>12th Arts / BCA Continuing</p>
                 </div>
             </div>
-            <div class="card stat-card">
+            <div class="card stat-card" onclick="showMsg('Skills: HTML, CSS, Python, AI/ML')">
                 <div class="stat-icon"><i class="fa-solid fa-code"></i></div>
                 <div class="stat-info">
                     <h4>Skills</h4>
                     <p>HTML, CSS, Python, AI/ML</p>
                 </div>
             </div>
-            <div class="card stat-card">
+            <div class="card stat-card" onclick="showMsg('Projects: First Website Created')">
                 <div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div>
                 <div class="stat-info">
                     <h4>Projects</h4>
                     <p>1st Website Created</p>
                 </div>
             </div>
-            <div class="card stat-card">
+            <div class="card stat-card" onclick="showMsg('Documents: 0 Files')">
                 <div class="stat-icon"><i class="fa-regular fa-file-lines"></i></div>
                 <div class="stat-info">
                     <h4>Documents</h4>
@@ -497,113 +356,69 @@
             </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Main Content Grid -->
         <div class="main-grid">
-            <!-- Timeline -->
             <div class="card">
-                <div class="card-title">
-                    <i class="fa-regular fa-clock"></i> Recent Activity
-                </div>
+                <div class="card-title"><i class="fa-regular fa-clock"></i> Recent Activity</div>
                 <div class="timeline-item">
                     <div class="dot"></div>
                     <div class="timeline-content">
                         <h5>First Website Launched</h5>
-                        <p>Designed and created personal portfolio website</p>
+                        <p>Designed personal portfolio dashboard</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="dot" style="background:#22c55e;"></div>
                     <div class="timeline-content">
                         <h5>BCA Journey Started</h5>
-                        <p>Continued tech learning after 12th Arts</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="dot" style="background:#eab308;"></div>
-                    <div class="timeline-content">
-                        <h5>Skills Added</h5>
-                        <p>HTML, CSS, Python, AI/ML</p>
+                        <p>Tech learning after 12th Arts</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Skills Progress -->
             <div class="card">
-                <div class="card-title">
-                    <i class="fa-solid fa-star"></i> My Skills
-                </div>
+                <div class="card-title"><i class="fa-solid fa-star"></i> My Skills</div>
                 <div class="skill-item">
-                    <div class="skill-header">
-                        <span>HTML</span>
-                        <span>90%</span>
-                    </div>
+                    <div class="skill-header"><span>HTML</span><span>90%</span></div>
                     <div class="progress-bar"><div class="fill" style="width: 90%;"></div></div>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-header">
-                        <span>CSS</span>
-                        <span>85%</span>
-                    </div>
+                    <div class="skill-header"><span>CSS</span><span>85%</span></div>
                     <div class="progress-bar"><div class="fill" style="width: 85%;"></div></div>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-header">
-                        <span>Python</span>
-                        <span>80%</span>
-                    </div>
+                    <div class="skill-header"><span>Python</span><span>80%</span></div>
                     <div class="progress-bar"><div class="fill" style="width: 80%;"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span>AI/ML</span>
-                        <span>70%</span>
-                    </div>
-                    <div class="progress-bar"><div class="fill" style="width: 70%;"></div></div>
                 </div>
             </div>
 
-            <!-- Quick Actions -->
             <div class="card">
-                <div class="card-title">
-                    <i class="fa-solid fa-bolt"></i> Quick Actions
-                </div>
-                <div class="action-btn" onclick="alert('Viewing Profile...')">
+                <div class="card-title"><i class="fa-solid fa-bolt"></i> Profile Actions</div>
+                <div class="action-btn" onclick="showMsg('Viewing Laln Kumar Profile')">
                     <span><i class="fa-regular fa-user"></i> View Profile</span>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
-                <div class="action-btn" onclick="alert('Opening First Website Project...')">
-                    <span><i class="fa-solid fa-code"></i> Open Projects</span>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-                <div class="action-btn" onclick="alert('No documents found.')">
-                    <span><i class="fa-regular fa-folder"></i> View Documents</span>
+                <div class="action-btn" onclick="showMsg('Project: First Website Published')">
+                    <span><i class="fa-solid fa-code"></i> View Project</span>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </div>
         </div>
 
-        <!-- Footer Quote -->
         <div class="footer-quote">
             <p>"Small steps every day lead to big results."</p>
             <small style="color: var(--accent-blue);">- Laln Kumar</small>
         </div>
 
-        <!-- Bottom Footer -->
         <div class="footer-bottom">
-            <span>© 2026 Laln Kumar | Built with ❤️ | Designed for a better tomorrow</span>
-            <div style="display: flex; gap: 15px;">
-                <i class="fa-brands fa-github"></i>
-                <i class="fa-brands fa-linkedin"></i>
-                <i class="fa-brands fa-youtube"></i>
-            </div>
+            <span>© 2026 Laln Kumar | View-Only Profile</span>
         </div>
     </div>
 
-    <!-- JavaScript for 3-dots menu toggle -->
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const dropdownMenu = document.getElementById('dropdownMenu');
-        const bellIcon = document.getElementById('bellIcon');
+        const bellBtn = document.getElementById('bellBtn');
 
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -611,14 +426,16 @@
         });
 
         window.addEventListener('click', () => {
-            if (dropdownMenu.classList.contains('active')) {
-                dropdownMenu.classList.remove('active');
-            }
+            dropdownMenu.classList.remove('active');
         });
 
-        bellIcon.addEventListener('click', () => {
-            alert('No new notifications.');
+        bellBtn.addEventListener('click', () => {
+            alert('🔔 No new notifications.');
         });
+
+        function showMsg(message) {
+            alert(message);
+        }
     </script>
 </body>
 </html>
