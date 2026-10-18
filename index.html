@@ -56,10 +56,16 @@ small{color:#94a3b8}
 <div class="card" onclick="showPage('Documents')">📄<h3>Documents</h3><small>Document manager</small></div>
 <div class="card" onclick="showPage('Projects')">📁<h3>Projects</h3><small>Your work</small></div>
 <div class="card" onclick="showPage('Notes')">📝<h3>Notes</h3><small>Personal notes</small></div>
+<div class="panel">
+  <h3>My Profile</h3>
+  <img id="homePhoto" class="hidden"
+       style="width:90px;height:90px;object-fit:cover;border-radius:50%">
+  <h2 id="homeName">Your Name</h2>
+  <p id="homeAbout">Welcome to my dashboard.</p>
+  <p id="homeEmail"></p>
+  <p id="homeEducation"></p>
+  <p id="homeSkills"></p>
 </div>
-<div class="panel"><h3>Quick information</h3><p id="summary">Complete your profile to get started.</p></div>
-</section>
-
 <section id="Profile" class="page hidden">
 <h1>👤 My Profile</h1>
 <div class="panel">
