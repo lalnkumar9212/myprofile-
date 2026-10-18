@@ -1,94 +1,225 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laln Kumar | Portfolio</title>
+<title>My Personal Dashboard</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-body{font-family:Arial,sans-serif;background:#0b1120;color:#eef2ff;line-height:1.7}
-header{padding:18px 7%;display:flex;justify-content:space-between;align-items:center;background:#111b30;position:sticky;top:0;z-index:10;border-bottom:1px solid #293650}
-.logo{font-size:23px;font-weight:bold;color:#55d6ff}
-nav a{color:white;text-decoration:none;margin-left:16px;font-size:14px}
-.hero{padding:90px 8%;min-height:440px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#111b30,#153b60)}
-.tag{color:#55d6ff;font-weight:bold}
-h1{font-size:clamp(38px,8vw,64px);line-height:1.15;margin:15px 0}
-.hero p,.intro{color:#b9c7dc;max-width:650px}
-.btn{display:inline-block;margin-top:24px;padding:12px 22px;border-radius:8px;background:#55d6ff;color:#08111f;text-decoration:none;font-weight:bold}
-section{padding:65px 8%}
-h2{font-size:30px;margin-bottom:22px}
-.line{width:65px;height:4px;background:#55d6ff;margin-top:-14px;margin-bottom:25px;border-radius:5px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
-.card{background:#131f34;border:1px solid #293b58;padding:23px;border-radius:14px}
-.card h3{color:#55d6ff;margin-bottom:10px}
-.skills{display:flex;flex-wrap:wrap;gap:12px}
-.skills span{padding:10px 15px;background:#172a43;border:1px solid #314969;border-radius:8px}
-.alt{background:#0e1729}
-footer{text-align:center;padding:28px;background:#111b30;color:#b9c7dc}
-a:focus{outline:2px solid #55d6ff}
-@media(max-width:520px){header{padding:14px 5%;flex-wrap:wrap;gap:10px}nav{width:100%;display:flex;flex-wrap:wrap;gap:12px}nav a{margin:0}.hero{padding:65px 7%}section{padding:48px 7%}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#0b1120;color:#f1f5f9}
+header{padding:20px;background:#111c32;display:flex;justify-content:space-between;align-items:center}
+header h2{margin:0;color:#60a5fa}
+button{cursor:pointer;border:0;border-radius:9px;padding:12px;background:#2563eb;color:white;font-size:15px}
+.layout{display:flex;min-height:calc(100vh - 70px)}
+nav{width:190px;background:#111827;padding:15px}
+nav button{display:block;width:100%;margin:6px 0;text-align:left;background:#1e293b}
+nav button:hover,nav button.active{background:#2563eb}
+main{padding:24px;flex:1;min-width:0}
+.panel{background:#172338;border:1px solid #2b3b54;border-radius:15px;padding:20px;margin:12px 0}
+input,textarea{width:100%;padding:12px;margin:7px 0 14px;border-radius:8px;border:1px solid #475569;background:#0b1120;color:white}
+label{display:block;color:#cbd5e1}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.card{background:#172338;padding:20px;border-radius:12px;cursor:pointer;border:1px solid #2b3b54}
+.card:hover{border-color:#60a5fa}
+.hidden{display:none}
+small{color:#94a3b8}
+@media(max-width:600px){.layout{display:block}nav{width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:5px}nav button{margin:0;font-size:13px;padding:11px}main{padding:14px}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">LK. Portfolio</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<h2>My Dashboard</h2>
+<button onclick="showPage('Settings')">⚙️ Settings</button>
 </header>
-
+<div class="layout">
+<nav id="menu">
+<button class="active" onclick="showPage('Home',this)">🏠 Home</button>
+<button onclick="showPage('Profile',this)">👤 Profile</button>
+<button onclick="showPage('Qualification',this)">🎓 Qualification</button>
+<button onclick="showPage('Skills',this)">💻 Skills</button>
+<button onclick="showPage('Projects',this)">📁 Projects</button>
+<button onclick="showPage('Documents',this)">📄 Documents</button>
+<button onclick="showPage('Notes',this)">📝 Notes</button>
+<button onclick="showPage('Notifications',this)">🔔 Notifications</button>
+<button onclick="showPage('QR Code',this)">▦ QR Code</button>
+<button onclick="showPage('Settings',this)">⚙️ Settings</button>
+</nav>
 <main>
-<section class="hero" id="home">
-  <div class="tag">WELCOME TO MY PORTFOLIO</div>
-  <h1>Hello, I'm<br>Laln Kumar.</h1>
-  <p>A curious learner exploring technology, Python, Machine Learning and Artificial Intelligence. Welcome to my digital space.</p>
-  <a class="btn" href="#projects">Explore My Work ↓</a>
+<section id="Home" class="page">
+<h1>Welcome! 👋</h1>
+<p>Your personal digital dashboard</p>
+<div class="cards">
+<div class="card" onclick="showPage('Profile')">👤<h3>Profile</h3><small>Personal details</small></div>
+<div class="card" onclick="showPage('Qualification')">🎓<h3>Education</h3><small>Qualifications</small></div>
+<div class="card" onclick="showPage('Skills')">💻<h3>Skills</h3><small>Technical skills</small></div>
+<div class="card" onclick="showPage('Documents')">📄<h3>Documents</h3><small>Document manager</small></div>
+<div class="card" onclick="showPage('Projects')">📁<h3>Projects</h3><small>Your work</small></div>
+<div class="card" onclick="showPage('Notes')">📝<h3>Notes</h3><small>Personal notes</small></div>
+</div>
+<div class="panel"><h3>Quick information</h3><p id="summary">Complete your profile to get started.</p></div>
 </section>
 
-<section id="about">
-  <h2>About Me</h2><div class="line"></div>
-  <p class="intro">I am passionate about learning new technologies and building useful digital projects. I am developing my skills step by step, from programming fundamentals to Artificial Intelligence.</p>
+<section id="Profile" class="page hidden">
+<h1>👤 My Profile</h1>
+<div class="panel">
+<label>Profile photo</label><input type="file" id="photo" accept="image/*">
+<img id="preview" class="hidden" style="width:100px;height:100px;object-fit:cover;border-radius:50%">
+<label>Full name</label><input id="name" placeholder="Enter your name">
+<label>About me</label><textarea id="about" placeholder="Write about yourself"></textarea>
+<label>Email (optional)</label><input id="email" type="email" placeholder="Email">
+<button onclick="saveProfile()">Save Profile</button>
+</div>
 </section>
 
-<section class="alt" id="skills">
-  <h2>My Skills</h2><div class="line"></div>
-  <div class="skills">
-    <span>HTML & CSS</span><span>JavaScript</span>
-    <span>Python</span><span>Machine Learning</span>
-    <span>Artificial Intelligence</span><span>MS Office</span>
-  </div>
+<section id="Qualification" class="page hidden">
+<h1>🎓 Qualification</h1>
+<div class="panel">
+<label>Qualification / Course</label><input id="degree" placeholder="e.g. Class 12">
+<label>School / Institute</label><input id="school" placeholder="Institute name">
+<label>Year</label><input id="year" placeholder="Year">
+<button onclick="addItem('education')">Add Qualification</button>
+<div id="educationList"></div>
+</div>
 </section>
 
-<section id="projects">
-  <h2>My Projects</h2><div class="line"></div>
-  <div class="cards">
-    <article class="card">
-      <h3>Personal Portfolio</h3>
-      <p>A responsive website to introduce myself and showcase my learning journey.</p>
-    </article>
-    <article class="card">
-      <h3>Python Projects</h3>
-      <p>A collection of programming exercises and small projects as I learn Python.</p>
-    </article>
-    <article class="card">
-      <h3>AI Learning Journey</h3>
-      <p>Exploring Machine Learning and Artificial Intelligence through study and practice.</p>
-    </article>
-  </div>
+<section id="Skills" class="page hidden">
+<h1>💻 Technical Skills</h1>
+<div class="panel">
+<label>Skill name</label><input id="skill" placeholder="e.g. HTML, Python">
+<button onclick="addItem('skills')">Add Skill</button>
+<div id="skillsList"></div>
+</div>
 </section>
 
-<section class="alt" id="contact">
-  <h2>Contact Me</h2><div class="line"></div>
-  <p class="intro">Thanks for visiting my portfolio! You can add your preferred contact details here.</p>
-  <a class="btn" href="#home">Back to Top ↑</a>
+<section id="Projects" class="page hidden">
+<h1>📁 Projects</h1>
+<div class="panel">
+<label>Project name</label><input id="project" placeholder="Project title">
+<label>Description</label><textarea id="projectDesc" placeholder="Describe your project"></textarea>
+<button onclick="addItem('projects')">Add Project</button>
+<div id="projectsList"></div>
+</div>
+</section>
+
+<section id="Documents" class="page hidden">
+<h1>📄 Documents</h1>
+<div class="panel">
+<p>यह शुरुआती document list है। निजी पहचान-पत्र सार्वजनिक वेबसाइट पर अपलोड न करें।</p>
+<label>Document name</label><input id="docName" placeholder="e.g. Certificate">
+<label>Choose file</label><input id="docFile" type="file">
+<button onclick="addDocument()">Add Document</button>
+<div id="documentsList"></div>
+</div>
+</section>
+
+<section id="Notes" class="page hidden">
+<h1>📝 My Notes</h1>
+<div class="panel">
+<textarea id="note" placeholder="Write a note..."></textarea>
+<button onclick="addItem('notes')">Save Note</button>
+<div id="notesList"></div>
+</div>
+</section>
+
+<section id="Notifications" class="page hidden">
+<h1>🔔 Notifications</h1>
+<div class="panel"><p id="notice">Welcome! Your dashboard is ready.</p><button onclick="document.getElementById('notice').textContent='All caught up!'">Mark as read</button></div>
+</section>
+
+<section id="QR Code" class="page hidden">
+<h1>▦ QR Code</h1>
+<div class="panel">
+<p>Enter a link to create a QR code.</p>
+<input id="qrText" placeholder="https://example.com">
+<button onclick="makeQR()">Generate QR</button>
+<div id="qrResult"></div>
+<small>QR generation needs an internet connection.</small>
+</div>
+</section>
+
+<section id="Settings" class="page hidden">
+<h1>⚙️ Settings</h1>
+<div class="panel">
+<h3>Appearance</h3>
+<button onclick="document.body.style.background='#f1f5f9';document.body.style.color='#111827'">Light mode</button>
+<button onclick="document.body.style.background='#0b1120';document.body.style.color='#f1f5f9'">Dark mode</button>
+</div>
+<div class="panel"><h3>About</h3><p>My Personal Dashboard</p><p>Version 1.0</p><p>Developed by You</p></div>
 </section>
 </main>
-
-<footer>© 2026 Laln Kumar · Personal Portfolio</footer>
+</div>
+<script>
+const getData=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return []}};
+const putData=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+function showPage(id,btn){
+document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+document.getElementById(id)?.classList.remove('hidden');
+document.querySelectorAll('#menu button').forEach(b=>b.classList.remove('active'));
+if(btn)btn.classList.add('active');
+}
+function saveProfile(){
+const p={name:document.getElementById('name').value,about:document.getElementById('about').value,email:document.getElementById('email').value};
+localStorage.setItem('profile',JSON.stringify(p));
+document.getElementById('summary').textContent='Name: '+(p.name||'Not added')+' | '+(p.about||'No bio yet');
+alert('Profile saved on this device.');
+}
+function addItem(type){
+let value='';
+if(type==='education')value=[degree.value,school.value,year.value].filter(Boolean).join(' — ');
+if(type==='skills')value=skill.value.trim();
+if(type==='projects')value=project.value.trim()+(projectDesc.value.trim()?' — '+projectDesc.value.trim():'');
+if(type==='notes')value=note.value.trim();
+if(!value){alert('Please enter information first.');return}
+const arr=getData(type);arr.push(value);putData(type,arr);render(type);
+if(type==='skills')skill.value='';
+if(type==='notes')note.value='';
+if(type==='projects'){project.value='';projectDesc.value=''}
+if(type==='education'){degree.value='';school.value='';year.value=''}
+}
+function render(type){
+const ids={education:'educationList',skills:'skillsList',projects:'projectsList',notes:'notesList'};
+const el=document.getElementById(ids[type]);if(!el)return;
+el.innerHTML='';
+getData(type).forEach((v,i)=>{
+const row=document.createElement('div');row.className='panel';
+const txt=document.createElement('p');txt.textContent=v;row.appendChild(txt);
+const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{const a=getData(type);a.splice(i,1);putData(type,a);render(type)};row.appendChild(del);el.appendChild(row);
+});
+}
+function addDocument(){
+const name=document.getElementById('docName').value.trim();
+const file=document.getElementById('docFile').files[0];
+if(!name||!file){alert('Enter a name and select a file.');return}
+const arr=getData('documents');arr.push({name:name,fileName:file.name,size:file.size});
+putData('documents',arr);renderDocs();document.getElementById('docName').value='';document.getElementById('docFile').value='';
+alert('Document name saved. File contents are not stored by this starter version.');
+}
+function renderDocs(){
+const el=document.getElementById('documentsList');el.innerHTML='';
+getData('documents').forEach((d,i)=>{
+const row=document.createElement('div');row.className='panel';
+const p=document.createElement('p');p.textContent=d.name+' — '+d.fileName;row.appendChild(p);
+const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{const a=getData('documents');a.splice(i,1);putData('documents',a);renderDocs()};row.appendChild(del);el.appendChild(row);
+});
+}
+function makeQR(){
+const v=document.getElementById('qrText').value.trim();
+if(!v){alert('Enter a link first.');return}
+const img=document.createElement('img');img.alt='QR code';img.width=200;img.height=200;img.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(v);
+const el=document.getElementById('qrResult');el.replaceChildren(img);
+}
+document.getElementById('photo').addEventListener('change',e=>{
+const f=e.target.files[0];if(!f)return;
+const r=new FileReader();r.onload=()=>{document.getElementById('preview').src=r.result;document.getElementById('preview').classList.remove('hidden');localStorage.setItem('profilePhoto',r.result)};r.readAsDataURL(f);
+});
+try{
+const p=JSON.parse(localStorage.getItem('profile')||'{}');
+name.value=p.name||'';about.value=p.about||'';email.value=p.email||'';
+if(p.name||p.about)summary.textContent='Name: '+(p.name||'Not added')+' | '+(p.about||'No bio yet');
+const savedPhoto=localStorage.getItem('profilePhoto');if(savedPhoto){preview.src=savedPhoto;preview.classList.remove('hidden')}
+}catch(e){}
+['education','skills','projects','notes'].forEach(render);renderDocs();
+</script>
 </body>
 </html>
