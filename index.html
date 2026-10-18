@@ -1,300 +1,591 @@
 
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Personal Dashboard</title>
+<meta name="theme-color" content="#10294b">
+<title>LKU | LWD Dashboard</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#0b1120;color:#f1f5f9}
-header{padding:20px;background:#111c32;display:flex;justify-content:space-between;align-items:center}
-header h2{margin:0;color:#60a5fa}
-button{cursor:pointer;border:0;border-radius:9px;padding:12px;background:#2563eb;color:white;font-size:15px}
-.layout{display:flex;min-height:calc(100vh - 70px)}
-nav{width:190px;background:#111827;padding:15px}
-nav button{display:block;width:100%;margin:6px 0;text-align:left;background:#1e293b}
-nav button:hover,nav button.active{background:#2563eb}
-main{padding:24px;flex:1;min-width:0}
-.panel{background:#172338;border:1px solid #2b3b54;border-radius:15px;padding:20px;margin:12px 0}
-input,textarea{width:100%;padding:12px;margin:7px 0 14px;border-radius:8px;border:1px solid #475569;background:#0b1120;color:white}
-label{display:block;color:#cbd5e1}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-.card{background:#172338;padding:20px;border-radius:12px;cursor:pointer;border:1px solid #2b3b54}
-.card:hover{border-color:#60a5fa}
-.hidden{display:none}
-small{color:#94a3b8}
-@media(max-width:600px){.layout{display:block}nav{width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:5px}nav button{margin:0;font-size:13px;padding:11px}main{padding:14px}}
+:root {
+  --navy: #10294b;
+  --blue: #244d7d;
+  --bg: #f3f6fa;
+  --border: #e0e7f0;
+  --muted: #68788d;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1b2b40;
+  background: var(--bg);
+}
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+.topbar {
+  background: var(--navy);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 43px; height: 43px;
+  border: 2px solid #dce7f7;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 19px;
+}
+.brand h1 { margin: 0; font-size: 21px; }
+.brand small { color: #c9d7e9; }
+.top-actions { display: flex; gap: 8px; }
+.top-actions button {
+  background: #ffffff18; color: white;
+  border: 1px solid #ffffff44;
+  padding: 9px 12px; border-radius: 9px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 225px minmax(0,1fr);
+  max-width: 1450px;
+  margin: auto;
+  min-height: calc(100vh - 73px);
+}
+.sidebar {
+  background: white;
+  border-right: 1px solid var(--border);
+  padding: 18px 12px;
+}
+.nav-label {
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 1.2px; font-weight: bold;
+  padding: 8px 12px;
+}
+.nav-btn {
+  display: flex; align-items: center; gap: 11px;
+  width: 100%; text-align: left;
+  border: 0; background: transparent;
+  padding: 12px; margin: 3px 0;
+  border-radius: 9px; color: #40516a;
+}
+.nav-btn:hover, .nav-btn.active {
+  background: #eaf0f8; color: var(--navy);
+  font-weight: bold;
+}
+.nav-icon { width: 22px; text-align: center; }
+.main { min-width: 0; padding: 25px; }
+.page-head {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 12px;
+  margin-bottom: 22px;
+}
+.page-head h2 { margin: 0 0 7px; font-size: 26px; }
+.page-head p { margin: 0; color: var(--muted); font-size: 14px; }
+.primary, .secondary, .danger {
+  border: 0; border-radius: 8px;
+  padding: 10px 14px; font-weight: 600;
+}
+.primary { background: var(--navy); color: white; }
+.secondary { background: #eaf0f8; color: var(--navy); }
+.danger { background: #fff0f0; color: #b42318; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 14px; margin-bottom: 20px;
+}
+.card, .panel {
+  background: white; border: 1px solid var(--border);
+  border-radius: 13px; padding: 19px;
+  min-width: 0;
+}
+.stat-label { color: var(--muted); font-size: 13px; }
+.stat-value { font-size: 27px; font-weight: 750; margin: 12px 0 5px; }
+.stat-note { color: var(--muted); font-size: 12px; }
+.section-title { font-size: 17px; margin: 0 0 15px; }
+.quick-grid {
+  display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 12px;
+}
+.quick-btn {
+  background: white; border: 1px solid var(--border);
+  border-radius: 11px; padding: 17px 12px;
+  text-align: left; color: var(--navy);
+}
+.quick-btn span { display: block; font-size: 22px; margin-bottom: 10px; }
+.quick-btn strong { font-size: 14px; }
+.quick-btn small { display: block; color: var(--muted); margin-top: 6px; }
+.profile-head {
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 20px;
+}
+.avatar {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: #e6edf6; color: var(--navy);
+  display: grid; place-items: center;
+  font-size: 29px; font-weight: bold;
+  overflow: hidden; flex-shrink: 0;
+  border: 3px solid white; outline: 1px solid var(--border);
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.profile-head h3 { margin: 0 0 7px; }
+.profile-head p { margin: 0; color: var(--muted); }
+.fields {
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 15px;
+}
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field label { color: #526176; font-size: 13px; font-weight: 600; }
+.field input, .field textarea, .field select {
+  width: 100%; padding: 11px;
+  border: 1px solid #d7e0eb; border-radius: 8px;
+  color: #1b2b40; background: white; outline-color: var(--blue);
+}
+.field textarea { min-height: 95px; resize: vertical; }
+.full { grid-column: 1 / -1; }
+.form-actions { display: flex; gap: 9px; margin-top: 18px; flex-wrap: wrap; }
+.list { display: grid; gap: 12px; }
+.list-item {
+  background: white; border: 1px solid var(--border);
+  border-radius: 11px; padding: 15px;
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 12px;
+}
+.item-main { min-width: 0; overflow-wrap: anywhere; }
+.item-main strong { display: block; margin-bottom: 6px; }
+.item-main p { margin: 0; color: var(--muted); font-size: 13px; white-space: pre-wrap; }
+.item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.item-actions button { border: 0; border-radius: 7px; padding: 7px 9px; }
+.empty {
+  text-align: center; background: white;
+  border: 1px dashed #cbd6e4; padding: 32px 15px;
+  border-radius: 12px; color: var(--muted);
+}
+.empty strong { display: block; color: var(--navy); margin-bottom: 8px; }
+.notice {
+  border: 1px solid #dce6f4; background: #f5f8fc;
+  padding: 14px; border-radius: 10px; margin-bottom: 16px;
+  font-size: 13px; line-height: 1.6;
+}
+.qr-wrap { text-align: center; }
+.qr-wrap img {
+  width: 220px; height: 220px; max-width: 100%;
+  object-fit: contain; margin: 15px auto;
+  border: 1px solid var(--border); border-radius: 12px;
+}
+.footer { color: var(--muted); font-size: 12px; text-align: center; padding: 25px 0 5px; }
+.hidden { display: none !important; }
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy); color: white;
+  padding: 12px 18px; border-radius: 9px;
+  z-index: 30; box-shadow: 0 5px 20px #0002;
+  max-width: 90%; font-size: 14px;
+}
+.mobile-nav { display: none; }
+@media(max-width: 900px) {
+  .cards { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .quick-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width: 650px) {
+  .topbar { padding: 11px 13px; }
+  .brand h1 { font-size: 18px; }
+  .brand small { font-size: 11px; }
+  .logo { width: 39px; height: 39px; }
+  .top-actions button { padding: 8px; font-size: 12px; }
+  .layout { display: block; }
+  .sidebar { display: none; }
+  .main { padding: 18px 13px 88px; }
+  .page-head h2 { font-size: 23px; }
+  .page-head { align-items: center; }
+  .cards { gap: 10px; }
+  .card { padding: 14px; }
+  .stat-value { font-size: 24px; }
+  .fields { grid-template-columns: 1fr; }
+  .full { grid-column: auto; }
+  .profile-head { gap: 14px; }
+  .avatar { width: 72px; height: 72px; }
+  .mobile-nav {
+    display: flex; position: fixed; bottom: 0; left: 0; right: 0;
+    z-index: 20; background: white; border-top: 1px solid var(--border);
+    padding: 6px 3px max(6px,env(safe-area-inset-bottom));
+    justify-content: space-around; gap: 2px;
+  }
+  .mobile-nav button {
+    border: 0; background: transparent; color: #64748b;
+    border-radius: 8px; padding: 7px 3px; flex: 1;
+    font-size: 10px; min-width: 0;
+  }
+  .mobile-nav button span { display: block; font-size: 19px; margin-bottom: 3px; }
+  .mobile-nav button.active { color: var(--navy); background: #eaf0f8; font-weight: bold; }
+  .item-actions { flex-direction: column; }
+}
 </style>
 </head>
+
 <body>
-<header>
-<h2>My Dashboard</h2>
-<button onclick="showPage('Settings')">⚙️ Settings</button>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">LK</div>
+    <div>
+      <h1>LKU <span style="font-size:11px;color:#c9d7e9">/ LWD</span></h1>
+      <small>Personal Profile & Dashboard</small>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="exportBtn">Export</button>
+    <button id="headerSettings">⚙ Settings</button>
+  </div>
 </header>
+
 <div class="layout">
-<nav id="menu">
-<button class="active" onclick="showPage('Home',this)">🏠 Home</button>
-<button onclick="showPage('Profile',this)">👤 Profile</button>
-<button onclick="showPage('Qualification',this)">🎓 Qualification</button>
-<button onclick="showPage('Skills',this)">💻 Skills</button>
-<button onclick="showPage('Projects',this)">📁 Projects</button>
-<button onclick="showPage('Documents',this)">📄 Documents</button>
-<button onclick="showPage('Notes',this)">📝 Notes</button>
-<button onclick="showPage('Notifications',this)">🔔 Notifications</button>
-<button onclick="showPage('QR Code',this)">▦ QR Code</button>
-<button onclick="showPage('Settings',this)">⚙️ Settings</button>
-</nav>
-<main>
-<section id="Home" class="page">
-<h1>Welcome! 👋</h1>
-<p>Your personal digital dashboard</p>
-<div class="cards">
-<div class="card" onclick="showPage('Profile')">👤<h3>Profile</h3><small>Personal details</small></div>
-<div class="card" onclick="showPage('Qualification')">🎓<h3>Education</h3><small>Qualifications</small></div>
-<div class="card" onclick="showPage('Skills')">💻<h3>Skills</h3><small>Technical skills</small></div>
-<div class="card" onclick="showPage('Documents')">📄<h3>Documents</h3><small>Document manager</small></div>
-<div class="card" onclick="showPage('Projects')">📁<h3>Projects</h3><small>Your work</small></div>
-<div class="card" onclick="showPage('Notes')">📝<h3>Notes</h3><small>Personal notes</small></div>
-<div class="panel">
-  <h3>My Profile</h3>
-  <img id="homePhoto" class="hidden"
-       style="width:90px;height:90px;object-fit:cover;border-radius:50%">
-  <h2 id="homeName">Your Name</h2>
-  <p id="homeAbout">Welcome to my dashboard.</p>
-  <p id="homeEmail"></p>
-  <p id="homeEducation"></p>
-  <p id="homeSkills"></p>
-</div>
-<section id="Profile" class="page hidden">
-<h1>👤 My Profile</h1>
-<div class="panel">
-<label>Profile photo</label><input type="file" id="photo" accept="image/*">
-<img id="preview" class="hidden" style="width:100px;height:100px;object-fit:cover;border-radius:50%">
-<label>Full name</label><input id="name" placeholder="Enter your name">
-<label>About me</label><textarea id="about" placeholder="Write about yourself"></textarea>
-<label>Email (optional)</label><input id="email" type="email" placeholder="Email">
-<button onclick="saveProfile()">Save Profile</button>
-</div>
-</section>
+  <aside class="sidebar">
+    <div class="nav-label">MAIN MENU</div>
+    <nav id="sideNav"></nav>
+    <div class="notice" style="margin-top:22px">
+      <strong>Personal Dashboard</strong><br>
+      Manage your information in one place.
+    </div>
+  </aside>
 
-<section id="Qualification" class="page hidden">
-<h1>🎓 Qualification</h1>
-<div class="panel">
-<label>Qualification / Course</label><input id="degree" placeholder="e.g. Class 12">
-<label>School / Institute</label><input id="school" placeholder="Institute name">
-<label>Year</label><input id="year" placeholder="Year">
-<button onclick="addItem('education')">Add Qualification</button>
-<div id="educationList"></div>
+  <main class="main">
+    <div class="page-head">
+      <div>
+        <h2 id="pageTitle">Home</h2>
+        <p id="pageSubtitle">Welcome to your personal dashboard.</p>
+      </div>
+      <button class="primary" id="pageAction">＋ Add New</button>
+    </div>
+    <div id="content"></div>
+    <div class="footer">LKU · LWD Personal Dashboard · Your information, your control</div>
+  </main>
 </div>
-</section>
 
-<section id="Skills" class="page hidden">
-<h1>💻 Technical Skills</h1>
-<div class="panel">
-<label>Skill name</label><input id="skill" placeholder="e.g. HTML, Python">
-<button onclick="addItem('skills')">Add Skill</button>
-<div id="skillsList"></div>
-</div>
-</section>
-
-<section id="Projects" class="page hidden">
-<h1>📁 Projects</h1>
-<div class="panel">
-<label>Project name</label><input id="project" placeholder="Project title">
-<label>Description</label><textarea id="projectDesc" placeholder="Describe your project"></textarea>
-<button onclick="addItem('projects')">Add Project</button>
-<div id="projectsList"></div>
-</div>
-</section>
-
-<section id="Documents" class="page hidden">
-<h1>📄 Documents</h1>
-<div class="panel">
-<p>यह शुरुआती document list है। निजी पहचान-पत्र सार्वजनिक वेबसाइट पर अपलोड न करें।</p>
-<label>Document name</label><input id="docName" placeholder="e.g. Certificate">
-<label>Choose file</label><input id="docFile" type="file">
-<button onclick="addDocument()">Add Document</button>
-<div id="documentsList"></div>
-</div>
-</section>
-
-<section id="Notes" class="page hidden">
-<h1>📝 My Notes</h1>
-<div class="panel">
-<textarea id="note" placeholder="Write a note..."></textarea>
-<button onclick="addItem('notes')">Save Note</button>
-<div id="notesList"></div>
-</div>
-</section>
-
-<section id="Notifications" class="page hidden">
-<h1>🔔 Notifications</h1>
-<div class="panel"><p id="notice">Welcome! Your dashboard is ready.</p><button onclick="document.getElementById('notice').textContent='All caught up!'">Mark as read</button></div>
-</section>
-
-<section id="QR Code" class="page hidden">
-<h1>▦ QR Code</h1>
-<div class="panel">
-<p>Enter a link to create a QR code.</p>
-<input id="qrText" placeholder="https://example.com">
-<button onclick="makeQR()">Generate QR</button>
-<div id="qrResult"></div>
-<small>QR generation needs an internet connection.</small>
-</div>
-</section>
-
-<section id="Settings" class="page hidden">
-<h1>⚙️ Settings</h1>
-<div class="panel">
-<h3>Appearance</h3>
-<button onclick="document.body.style.background='#f1f5f9';document.body.style.color='#111827'">Light mode</button>
-<button onclick="document.body.style.background='#0b1120';document.body.style.color='#f1f5f9'">Dark mode</button>
-</div>
-<div class="panel"><h3>About</h3><p>My Personal Dashboard</p><p>Version 1.0</p><p>Developed by You</p></div>
-</section>
-</main>
-</div>
-<script>
-const getData=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return []}};
-const putData=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
-function showPage(id,btn){
-document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
-document.getElementById(id)?.classList.remove('hidden');
-document.querySelectorAll('#menu button').forEach(b=>b.classList.remove('active'));
-if(btn)btn.classList.add('active');
-}
-function saveProfile(){
-const p={name:document.getElementById('name').value,about:document.getElementById('about').value,email:document.getElementById('email').value};
-localStorage.setItem('profile',JSON.stringify(p));
-document.getElementById('summary').textContent='Name: '+(p.name||'Not added')+' | '+(p.about||'No bio yet');
-alert('Profile saved on this device.');
-}
-function addItem(type){
-let value='';
-if(type==='education')value=[degree.value,school.value,year.value].filter(Boolean).join(' — ');
-if(type==='skills')value=skill.value.trim();
-if(type==='projects')value=project.value.trim()+(projectDesc.value.trim()?' — '+projectDesc.value.trim():'');
-if(type==='notes')value=note.value.trim();
-if(!value){alert('Please enter information first.');return}
-const arr=getData(type);arr.push(value);putData(type,arr);render(type);
-if(type==='skills')skill.value='';
-if(type==='notes')note.value='';
-if(type==='projects'){project.value='';projectDesc.value=''}
-if(type==='education'){degree.value='';school.value='';year.value=''}
-}
-function render(type){
-const ids={education:'educationList',skills:'skillsList',projects:'projectsList',notes:'notesList'};
-const el=document.getElementById(ids[type]);if(!el)return;
-el.innerHTML='';
-getData(type).forEach((v,i)=>{
-const row=document.createElement('div');row.className='panel';
-const txt=document.createElement('p');txt.textContent=v;row.appendChild(txt);
-const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{const a=getData(type);a.splice(i,1);putData(type,a);render(type)};row.appendChild(del);el.appendChild(row);
-});
-}
-function addDocument(){
-const name=document.getElementById('docName').value.trim();
-const file=document.getElementById('docFile').files[0];
-if(!name||!file){alert('Enter a name and select a file.');return}
-const arr=getData('documents');arr.push({name:name,fileName:file.name,size:file.size});
-putData('documents',arr);renderDocs();document.getElementById('docName').value='';document.getElementById('docFile').value='';
-alert('Document name saved. File contents are not stored by this starter version.');
-}
-function renderDocs(){
-const el=document.getElementById('documentsList');el.innerHTML='';
-getData('documents').forEach((d,i)=>{
-const row=document.createElement('div');row.className='panel';
-const p=document.createElement('p');p.textContent=d.name+' — '+d.fileName;row.appendChild(p);
-const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{const a=getData('documents');a.splice(i,1);putData('documents',a);renderDocs()};row.appendChild(del);el.appendChild(row);
-});
-}
-function makeQR(){
-const v=document.getElementById('qrText').value.trim();
-if(!v){alert('Enter a link first.');return}
-const img=document.createElement('img');img.alt='QR code';img.width=200;img.height=200;img.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(v);
-const el=document.getElementById('qrResult');el.replaceChildren(img);
-}
-document.getElementById('photo').addEventListener('change',e=>{
-const f=e.target.files[0];if(!f)return;
-const r=new FileReader();r.onload=()=>{document.getElementById('preview').src=r.result;document.getElementById('preview').classList.remove('hidden');localStorage.setItem('profilePhoto',r.result)};r.readAsDataURL(f);
-});
-try{
-const p=JSON.parse(localStorage.getItem('profile')||'{}');
-name.value=p.name||'';about.value=p.about||'';email.value=p.email||'';
-if(p.name||p.about)summary.textContent='Name: '+(p.name||'Not added')+' | '+(p.about||'No bio yet');
-const savedPhoto=localStorage.getItem('profilePhoto');if(savedPhoto){preview.src=savedPhoto;preview.classList.remove('hidden')}
-}catch(e){}
-['education','skills','projects','notes'].forEach(render);renderDocs();
-</script>
-  
-<style>
-#menu {
-  display: none;
-  position: absolute;
-  right: 12px;
-  top: 65px;
-  width: 220px;
-  padding: 12px;
-  background: #111827;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  z-index: 999;
-}
-#menu.open {
-  display: block;
-}
-header {
-  position: relative;
-}
-</style>
+<nav class="mobile-nav" id="mobileNav"></nav>
+<div id="toast" class="toast hidden" role="status"></div>
 
 <script>
-(function () {
-  const menu = document.getElementById('menu');
-  if (!menu) return;
+(function() {
+"use strict";
 
-  const headerButton = document.querySelector('header button');
-  if (headerButton) {
-    headerButton.textContent = '⋮';
-    headerButton.onclick = function () {
-      menu.classList.toggle('open');
-    };
-  }
+const menus = [
+  {id:"home",name:"Home",icon:"⌂"},
+  {id:"profile",name:"Profile",icon:"◉"},
+  {id:"qualification",name:"Qualification",icon:"▤"},
+  {id:"skills",name:"Skills",icon:"✧"},
+  {id:"projects",name:"Projects",icon:"▣"},
+  {id:"documents",name:"Documents",icon:"▧"},
+  {id:"notes",name:"Notes",icon:"✎"},
+  {id:"notifications",name:"Notifications",icon:"♧"},
+  {id:"qr",name:"QR Code",icon:"▦"},
+  {id:"settings",name:"Settings",icon:"⚙"}
+];
 
-  menu.querySelectorAll('button').forEach(function (button) {
-    button.addEventListener('click', function () {
-      menu.classList.remove('open');
-    });
-  });
-})();
-  
-function updateDashboard(){
+const initialData = {
+  profile: {
+    name:"", displayName:"LWD", email:"", phone:"",
+    location:"", about:"", photo:""
+  },
+  qualification:[],
+  skills:[],
+  projects:[],
+  documents:[],
+  notes:[],
+  notifications:[],
+  settings:{theme:"light",displayName:"LWD"}
+};
+
+let data = loadData();
+let current = "home";
+let editing = null;
+let toastTimer;
+
+function loadData() {
   try {
-    const p = JSON.parse(localStorage.getItem('profile') || '{}');
-    document.getElementById('homeName').textContent = p.name || 'Your Name';
-    document.getElementById('homeAbout').textContent = p.about || 'Welcome to my dashboard.';
-    document.getElementById('homeEmail').textContent = p.email ? 'Email: ' + p.email : '';
-
-    const photo = localStorage.getItem('profilePhoto');
-    if (photo) {
-      const img = document.getElementById('homePhoto');
-      img.src = photo;
-      img.classList.remove('hidden');
-    }
-
-    const education = JSON.parse(localStorage.getItem('education') || '[]');
-    document.getElementById('homeEducation').textContent =
-      education.length ? 'Qualification: ' + education.join(', ') : '';
-
-    const skills = JSON.parse(localStorage.getItem('skills') || '[]');
-    document.getElementById('homeSkills').textContent =
-      skills.length ? 'Skills: ' + skills.join(', ') : '';
-  } catch(e) {}
+    const saved = localStorage.getItem("lku_dashboard_v1");
+    if (!saved) return structuredClone(initialData);
+    const parsed = JSON.parse(saved);
+    return {
+      ...structuredClone(initialData),
+      ...parsed,
+      profile:{...initialData.profile,...parsed.profile},
+      settings:{...initialData.settings,...parsed.settings}
+    };
+  } catch(e) {
+    return JSON.parse(JSON.stringify(initialData));
+  }
 }
-updateDashboard();
-  
-</script>
-  
-</body>
-</html>
+
+function saveData() {
+  try {
+    localStorage.setItem("lku_dashboard_v1",JSON.stringify(data));
+    return true;
+  } catch(e) {
+    toast("Storage full. Try a smaller profile photo.");
+    return false;
+  }
+}
+
+function toast(message) {
+  const el = document.getElementById("toast");
+  el.textContent = message;
+  el.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.add("hidden"),2600);
+}
+
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+
+function initials(name) {
+  return (name || "LK").trim().split(/\s+/).slice(0,2)
+    .map(s=>s[0] || "").join("").toUpperCase() || "LK";
+}
+
+function go(id) {
+  current = id;
+  editing = null;
+  renderNav();
+  renderPage();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderNav() {
+  const html = menus.map(m => `
+    <button class="nav-btn ${current===m.id?"active":""}" data-go="${m.id}">
+      <span class="nav-icon">${m.icon}</span>${m.name}
+    </button>`).join("");
+  document.getElementById("sideNav").innerHTML = html;
+  document.getElementById("mobileNav").innerHTML = menus
+    .filter(m=>["home","profile","projects","documents","settings"].includes(m.id))
+    .map(m=>`<button class="${current===m.id?"active":""}" data-go="${m.id}">
+      <span>${m.icon}</span>${m.name}</button>`).join("");
+}
+
+function field(label,key,value="",type="text",placeholder="") {
+  return `<div class="field">
+    <label for="${key}">${label}</label>
+    <input id="${key}" name="${key}" type="${type}" value="${esc(value)}"
+      placeholder="${esc(placeholder)}">
+  </div>`;
+}
+
+function area(label,key,value="",placeholder="") {
+  return `<div class="field full">
+    <label for="${key}">${label}</label>
+    <textarea id="${key}" name="${key}" placeholder="${esc(placeholder)}">${esc(value)}</textarea>
+  </div>`;
+}
+
+function stat(label,value,note) {
+  return `<div class="card">
+    <div class="stat-label">${label}</div>
+    <div class="stat-value">${value}</div>
+    <div class="stat-note">${note}</div>
+  </div>`;
+}
+
+function renderPage() {
+  const menu = menus.find(m=>m.id===current);
+  document.getElementById("pageTitle").textContent = menu.name;
+  document.getElementById("pageSubtitle").textContent = ({
+    home:"Welcome to your personal dashboard.",
+    profile:"View and edit your personal information.",
+    qualification:"Manage your education and qualifications.",
+    skills:"Keep a record of your skills.",
+    projects:"Manage your projects and portfolio.",
+    documents:"Keep track of your important documents.",
+    notes:"Create and manage personal notes.",
+    notifications:"Your saved dashboard notifications.",
+    qr:"Create a QR code for your profile information.",
+    settings:"Manage your dashboard preferences and data."
+  })[current];
+
+  const action = document.getElementById("pageAction");
+  action.classList.toggle("hidden",!["qualification","skills","projects","documents","notes","notifications"].includes(current));
+  action.textContent = "＋ Add New";
+  action.onclick = () => openForm(current);
+
+  const content = document.getElementById("content");
+  const renderers = {
+    home:homePage,
+    profile:profilePage,
+    qualification:()=>listPage("qualification","qualification"),
+    skills:()=>listPage("skills","skills"),
+    projects:()=>listPage("projects","projects"),
+    documents:()=>listPage("documents","documents"),
+    notes:()=>listPage("notes","notes"),
+    notifications:()=>listPage("notifications","notifications"),
+    qr:qrPage,
+    settings:settingsPage
+  };
+  content.innerHTML = renderers[current]();
+  if (current==="qr") updateQR();
+}
+
+function homePage() {
+  const p = data.profile;
+  return `
+    <div class="panel" style="margin-bottom:18px">
+      <div class="profile-head">
+        <div class="avatar">${p.photo ? `<img src="${esc(p.photo)}" alt="Profile photo">` : esc(initials(p.name))}</div>
+        <div>
+          <h3>${esc(p.name || "Welcome to LKU")}</h3>
+          <p>${esc(p.displayName || "LWD")} · Personal Dashboard</p>
+          <p style="margin-top:7px;font-size:13px">${esc(p.location || "Add your location in Profile")}</p>
+        </div>
+      </div>
+      <button class="primary" data-go="profile">View Profile →</button>
+    </div>
+    <div class="cards">
+      ${stat("Qualifications",data.qualification.length,"Education records")}
+      ${stat("Skills",data.skills.length,"Skills saved")}
+      ${stat("Projects",data.projects.length,"Projects saved")}
+      ${stat("Documents",data.documents.length,"Document records")}
+    </div>
+    <div class="panel">
+      <h3 class="section-title">Quick Access</h3>
+      <div class="quick-grid">
+        ${menus.filter(m=>m.id!=="home").map(m=>`
+          <button class="quick-btn" data-go="${m.id}">
+            <span>${m.icon}</span><strong>${m.name}</strong>
+            <small>Open ${m.name}</small>
+          </button>`).join("")}
+      </div>
+    </div>`;
+}
+
+function profilePage() {
+  const p = data.profile;
+  return `
+    <div class="panel">
+      <div class="profile-head">
+        <div class="avatar">${p.photo ? `<img src="${esc(p.photo)}" alt="Profile photo">` : esc(initials(p.name))}</div>
+        <div><h3>${esc(p.name || "Your Name")}</h3>
+          <p>${esc(p.displayName || "LWD")}</p>
+          <p style="font-size:12px;margin-top:5px">Personal information</p>
+        </div>
+      </div>
+      <form id="profileForm">
+        <div class="fields">
+          ${field("Full Name","pName",p.name,"text","Enter your full name")}
+          ${field("Display Name","pDisplay",p.displayName,"text","LWD")}
+          ${field("Email Address","pEmail",p.email,"email","you@example.com")}
+          ${field("Phone Number","pPhone",p.phone,"tel","Your phone number")}
+          ${field("Location","pLocation",p.location,"text","City, State")}
+          <div class="field">
+            <label for="pPhoto">Profile Photo</label>
+            <input id="pPhoto" type="file" accept="image/*">
+          </div>
+          ${area("About Me","pAbout",p.about,"Write a short introduction...")}
+        </div>
+        <div class="form-actions">
+          <button class="primary" type="submit">Save Profile</button>
+          <button class="secondary" type="button" data-go="home">Cancel</button>
+        </div>
+      </form>
+    </div>`;
+}
+
+const configs = {
+  qualification:{
+    title:"Qualification",singular:"Qualification",
+    fields:[
+      {key:"title",label:"Qualification / Course",placeholder:"e.g. Bachelor degree"},
+      {key:"institution",label:"Institution",placeholder:"School or college"},
+      {key:"year",label:"Year",placeholder:"Year of completion"},
+      {key:"details",label:"Details",area:true,placeholder:"Subjects, grade, or other details"}
+    ]
+  },
+  skills:{
+    title:"Skills",singular:"Skill",
+    fields:[
+      {key:"title",label:"Skill Name",placeholder:"e.g. Python"},
+      {key:"level",label:"Level",select:["Beginner","Intermediate","Advanced","Expert"]},
+      {key:"details",label:"Details",area:true,placeholder:"Describe your skill"}
+    ]
+  },
+  projects:{
+    title:"Projects",singular:"Project",
+    fields:[
+      {key:"title",label:"Project Name",placeholder:"Project title"},
+      {key:"link",label:"Project URL",placeholder:"https://example.com"},
+      {key:"status",label:"Status",select:["Planned","In Progress","Completed"]},
+      {key:"details",label:"Description",area:true,placeholder:"What did you build?"}
+    ]
+  },
+  documents:{
+    title:"Documents",singular:"Document Record",
+    fields:[
+      {key:"title",label:"Document Name",placeholder:"e.g. Certificate"},
+      {key:"category",label:"Category",placeholder:"Education, work, personal..."},
+      {key:"details",label:"Reference / Notes",area:true,placeholder:"Where it is stored or other notes"}
+    ]
+  },
+  notes:{
+    title:"Notes",singular:"Note",
+    fields:[
+      {key:"title",label:"Note Title",placeholder:"Title"},
+      {key:"details",label:"Note Content",area:true,placeholder:"Write your note here..."}
+    ]
+  },
+  notifications:{
+    title:"Notifications",singular:"Notification",
+    fields:[
+      {key:"title",label:"Title",placeholder:"Notification title"},
+      {key:"details",label:"Message",area:true,placeholder:"Write a reminder or message"}
+    ]
+  }
+};
+
+function listPage(key) {
+  const items = data[key] || [];
+  if (editing && editing.key===key) return formPage(key);
+  if (!items.length) return `
+    <div class="empty">
+      <strong>No ${configs[key].title.toLowerCase()} added yet</strong>
+      Add your first entry to see it here.
+      <div style="margin-top:15px"><button class="primary" data-add="${key}">＋ Add ${configs[key].singular}</button></div>
+    </div>`;
+  return `<div class="list">${items.map((item,i)=>`
+    <div class="list-item">
+      <div class="item-main">
+        <strong>${esc(item.title || configs[key].singular)}</strong>
+        <p>${esc(Object.entries(item)
+          .filter(([k,v])=>k!=="title" && v)
+          .map(([k,v])=>k.charAt(0).toUpperCase()+k.slice(1)+": "+v)
+          .join("\n"))}</p>
+      </div>
+      <div class="item-actions">
+        <button class="secondary" data-edit="${key}" data-index="${i}">Edit</button>
+        <button class="danger" data-delete="${key}" data-index="${i}">Delete</button>
+      </div>
+    </div>`).join("")}</div>`;
+}
+
+function formPage(key) {
+  const cfg = configs[key];
+  const old = editing && editing.key===key && editing.index!==null
+    ? data[key][editing.index] : {};
+  return `<div class="panel">
+    <h3 class="section-title">${editing.index===null?"Add":"Edit"} ${cfg.singular}</h3>
+    <form id="itemForm" data-key="${key}">
+      <div class="fields">
+        ${cfg.fields.map(f=>{
+          if (f.area) return area(f.label,f.key,old[f.key]||"",f.placeholder);
+          if (f.select) return `<div class="field">
+            <label for="${f.key}">${f.label}</label>
+            <select id="${f.key}" name="${f.key}">
+              ${f.select.map(v=>
