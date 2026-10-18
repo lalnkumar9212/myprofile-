@@ -268,6 +268,32 @@ header {
     });
   });
 })();
+  
+function updateDashboard(){
+  try {
+    const p = JSON.parse(localStorage.getItem('profile') || '{}');
+    document.getElementById('homeName').textContent = p.name || 'Your Name';
+    document.getElementById('homeAbout').textContent = p.about || 'Welcome to my dashboard.';
+    document.getElementById('homeEmail').textContent = p.email ? 'Email: ' + p.email : '';
+
+    const photo = localStorage.getItem('profilePhoto');
+    if (photo) {
+      const img = document.getElementById('homePhoto');
+      img.src = photo;
+      img.classList.remove('hidden');
+    }
+
+    const education = JSON.parse(localStorage.getItem('education') || '[]');
+    document.getElementById('homeEducation').textContent =
+      education.length ? 'Qualification: ' + education.join(', ') : '';
+
+    const skills = JSON.parse(localStorage.getItem('skills') || '[]');
+    document.getElementById('homeSkills').textContent =
+      skills.length ? 'Skills: ' + skills.join(', ') : '';
+  } catch(e) {}
+}
+updateDashboard();
+  
 </script>
   
 </body>
