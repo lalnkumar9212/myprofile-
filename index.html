@@ -2,305 +2,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyProfile | Personal Portfolio</title>
-  <meta name="description" content="Welcome to my personal portfolio website.">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #172033;
-      line-height: 1.7;
-    }
-
-    header {
-      background: #101d3a;
-      color: white;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    header h2 {
-      color: #60a5fa;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      color: #60a5fa;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #101d3a, #244d87);
-      color: white;
-      text-align: center;
-      padding: 65px 20px;
-    }
-
-    .profile {
-      width: 125px;
-      height: 125px;
-      border-radius: 50%;
-      border: 4px solid white;
-      object-fit: cover;
-      background: #dbeafe;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 8px;
-    }
-
-    .hero p {
-      color: #dbeafe;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 22px;
-      border-radius: 25px;
-      background: #60a5fa;
-      color: #101d3a;
-      font-weight: bold;
-      text-decoration: none;
-      margin: 5px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: white;
-    }
-
-    main {
-      max-width: 950px;
-      margin: auto;
-      padding: 25px 16px;
-    }
-
-    section {
-      background: white;
-      padding: 25px;
-      margin: 20px 0;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px #1720330b;
-      scroll-margin-top: 15px;
-    }
-
-    section h2 {
-      color: #1d4ed8;
-      margin-bottom: 14px;
-    }
-
-    .details {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-    }
-
-    .item {
-      padding: 14px;
-      background: #eff6ff;
-      border-radius: 10px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill {
-      background: #dbeafe;
-      color: #1e40af;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 14px;
-    }
-
-    footer {
-      background: #101d3a;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-      margin-top: 25px;
-    }
-
-    footer a {
-      color: #93c5fd;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        justify-content: center;
-      }
-
-      nav {
-        justify-content: center;
-        gap: 12px;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-      }
-
-      section {
-        padding: 20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laln Kumar | Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#0b1120;color:#eef2ff;line-height:1.7}
+header{padding:18px 7%;display:flex;justify-content:space-between;align-items:center;background:#111b30;position:sticky;top:0;z-index:10;border-bottom:1px solid #293650}
+.logo{font-size:23px;font-weight:bold;color:#55d6ff}
+nav a{color:white;text-decoration:none;margin-left:16px;font-size:14px}
+.hero{padding:90px 8%;min-height:440px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#111b30,#153b60)}
+.tag{color:#55d6ff;font-weight:bold}
+h1{font-size:clamp(38px,8vw,64px);line-height:1.15;margin:15px 0}
+.hero p,.intro{color:#b9c7dc;max-width:650px}
+.btn{display:inline-block;margin-top:24px;padding:12px 22px;border-radius:8px;background:#55d6ff;color:#08111f;text-decoration:none;font-weight:bold}
+section{padding:65px 8%}
+h2{font-size:30px;margin-bottom:22px}
+.line{width:65px;height:4px;background:#55d6ff;margin-top:-14px;margin-bottom:25px;border-radius:5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:#131f34;border:1px solid #293b58;padding:23px;border-radius:14px}
+.card h3{color:#55d6ff;margin-bottom:10px}
+.skills{display:flex;flex-wrap:wrap;gap:12px}
+.skills span{padding:10px 15px;background:#172a43;border:1px solid #314969;border-radius:8px}
+.alt{background:#0e1729}
+footer{text-align:center;padding:28px;background:#111b30;color:#b9c7dc}
+a:focus{outline:2px solid #55d6ff}
+@media(max-width:520px){header{padding:14px 5%;flex-wrap:wrap;gap:10px}nav{width:100%;display:flex;flex-wrap:wrap;gap:12px}nav a{margin:0}.hero{padding:65px 7%}section{padding:48px 7%}}
+</style>
 </head>
-
 <body>
+<header>
+  <div class="logo">LK. Portfolio</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <header>
-    <h2>MyProfile</h2>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<main>
+<section class="hero" id="home">
+  <div class="tag">WELCOME TO MY PORTFOLIO</div>
+  <h1>Hello, I'm<br>Laln Kumar.</h1>
+  <p>A curious learner exploring technology, Python, Machine Learning and Artificial Intelligence. Welcome to my digital space.</p>
+  <a class="btn" href="#projects">Explore My Work ↓</a>
+</section>
 
-  <div class="hero">
-    <!-- Replace this image URL with your own photo URL -->
-    <img
-      class="profile"
-      src="https://placehold.co/250x250/dbeafe/1e40af?text=Your+Photo"
-      alt="My profile photo"
-    >
+<section id="about">
+  <h2>About Me</h2><div class="line"></div>
+  <p class="intro">I am passionate about learning new technologies and building useful digital projects. I am developing my skills step by step, from programming fundamentals to Artificial Intelligence.</p>
+</section>
 
-    <h1 id="heroName">Your Name</h1>
-    <p>Student | Learner | Future Professional</p>
-
-    <a class="btn" href="#about">Know About Me</a>
-    <a class="btn" href="#contact">Contact Me</a>
+<section class="alt" id="skills">
+  <h2>My Skills</h2><div class="line"></div>
+  <div class="skills">
+    <span>HTML & CSS</span><span>JavaScript</span>
+    <span>Python</span><span>Machine Learning</span>
+    <span>Artificial Intelligence</span><span>MS Office</span>
   </div>
+</section>
 
-  <main>
+<section id="projects">
+  <h2>My Projects</h2><div class="line"></div>
+  <div class="cards">
+    <article class="card">
+      <h3>Personal Portfolio</h3>
+      <p>A responsive website to introduce myself and showcase my learning journey.</p>
+    </article>
+    <article class="card">
+      <h3>Python Projects</h3>
+      <p>A collection of programming exercises and small projects as I learn Python.</p>
+    </article>
+    <article class="card">
+      <h3>AI Learning Journey</h3>
+      <p>Exploring Machine Learning and Artificial Intelligence through study and practice.</p>
+    </article>
+  </div>
+</section>
 
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        Hello! Welcome to my personal website.
-        I am a motivated learner who enjoys discovering
-        new skills, exploring technology and improving
-        my knowledge every day.
-      </p>
-      <p>
-        My goal is to learn, grow and create useful
-        projects through hard work and consistency.
-      </p>
-    </section>
+<section class="alt" id="contact">
+  <h2>Contact Me</h2><div class="line"></div>
+  <p class="intro">Thanks for visiting my portfolio! You can add your preferred contact details here.</p>
+  <a class="btn" href="#home">Back to Top ↑</a>
+</section>
+</main>
 
-    <section id="education">
-      <h2>Education</h2>
-      <div class="details">
-        <div class="item">
-          <h3>My Qualification</h3>
-          <p>Add your class, degree or qualification here.</p>
-        </div>
-        <div class="item">
-          <h3>My Learning</h3>
-          <p>Add your school, courses or certifications here.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2>My Skills</h2>
-      <div class="skills">
-        <span class="skill">Computer Basics</span>
-        <span class="skill">MS Office</span>
-        <span class="skill">HTML</span>
-        <span class="skill">CSS</span>
-        <span class="skill">Python</span>
-        <span class="skill">Machine Learning</span>
-      </div>
-      <p style="margin-top: 15px;">
-        Edit this list to show only the skills you have.
-      </p>
-    </section>
-
-    <section id="projects">
-      <h2>My Projects & Achievements</h2>
-      <div class="item">
-        <h3>My First Project</h3>
-        <p>
-          I am building my personal portfolio website
-          to showcase my learning and progress.
-        </p>
-      </div>
-      <div class="item" style="margin-top: 12px;">
-        <h3>My Achievements</h3>
-        <p>Add your certificates, awards or completed projects here.</p>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <p>
-        If you would like to connect with me,
-        you can send me an email.
-      </p>
-      <p style="margin-top: 12px;">
-        Email: <span id="emailText">your-email@example.com</span>
-      </p>
-      <a class="btn" id="emailButton"
-         href="mailto:your-email@example.com">
-        Send Email
-      </a>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© <span id="year"></span> MyProfile. All rights reserved.</p>
-    <p>Made with HTML, CSS & JavaScript.</p>
-  </footer>
-
-  <script>
-    // Automatically update the copyright year
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-    // Personalize your website here
-    const myName = "Your Name";
-    const myEmail = "your-email@example.com";
-
-    document.getElementById("heroName").textContent = myName;
-    document.getElementById("emailText").textContent = myEmail;
-    document.getElementById("emailButton").href =
-      "mailto:" + myEmail;
-
-    document.title = myName + " | MyProfile";
-  </script>
-
+<footer>© 2026 Laln Kumar · Personal Portfolio</footer>
 </body>
 </html>
