@@ -221,5 +221,48 @@ const savedPhoto=localStorage.getItem('profilePhoto');if(savedPhoto){preview.src
 }catch(e){}
 ['education','skills','projects','notes'].forEach(render);renderDocs();
 </script>
+  
+<style>
+#menu {
+  display: none;
+  position: absolute;
+  right: 12px;
+  top: 65px;
+  width: 220px;
+  padding: 12px;
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  z-index: 999;
+}
+#menu.open {
+  display: block;
+}
+header {
+  position: relative;
+}
+</style>
+
+<script>
+(function () {
+  const menu = document.getElementById('menu');
+  if (!menu) return;
+
+  const headerButton = document.querySelector('header button');
+  if (headerButton) {
+    headerButton.textContent = '⋮';
+    headerButton.onclick = function () {
+      menu.classList.toggle('open');
+    };
+  }
+
+  menu.querySelectorAll('button').forEach(function (button) {
+    button.addEventListener('click', function () {
+      menu.classList.remove('open');
+    });
+  });
+})();
+</script>
+  
 </body>
 </html>
